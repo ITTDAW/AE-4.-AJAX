@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzeria Manhattan</title>
+    <!-- CSS only -->
+    <!-- Enlace bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Enlace archivo estilos -->
+<link rel="stylesheet" href="CSS/styles.css">
+    <!--Favicon-->
+<link rel="icon" href="img/Pizza.jpg">
+    <!--Google apis para tipografia-->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
+
+    <!--SWEET ALERT SNIPPET-->
+    <script src="sweetalert2.min.js"></script>
+    
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.css" rel="stylesheet" />
+   
+</head>
+
+<body >
+
+    <!-- Lo mas conveniente cuando hacemos validaciones es que estas se encuentren en un archivo separado del html. Al mismo tiempo
+    es muy importante que el codigo html solo contenga eso, codigo html, que el codigo JS no se encuentre en el html porque sino el cliente
+    lo puede copiar. Aun asi hay metodos para copiarlo, pero tambien tenemos que tener claro que las validaciones tienen que encontrarse
+    tanto en la parte del cliente como en la parte del servidor. -->
+
+    <!-- Vamos a dividir nuestro codigo html en bastantes cajas para despues poder darle estilos de una forma cómoda y ordenada -->
+    <div id="centrar">
+
+    <!-- Creamos nuestro formulario con su id y el method ponemos que sea get, action no ponemos porque vamos a sacar los mensajes en un alert
+    Si los sacaramos en un html diferente del index, o incluso en un index refrescado, pondriamos el action con la direccion a la que 
+    apuntaria despues de pulsar submit -->
+    <form id="formulario" name="formulario" class="formulario"  method="get" >
+
+        <h2>¡Ordena tu Pizza!</h2>
+       
+
+            <fieldset class="border p-5">
+                <!-- Cuando son input text nos vale con localizarlos con un id para despues llamarlos desde el archivo JS -->
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" id="nombre" placeholder="Escribe aqui tu nombre" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <input type="text" id="direccion" placeholder="Escribe aqui tu dirección" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text" id="telefono" placeholder="Escribe aqui tu teléfono" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" id="email" placeholder="Escribe aqui tu correo electrónico" class="form-control">
+                </div>
+            </fieldset>
+       
+       <br>
+        <div class="tamaño" id="tamaño">
+
+            <fieldset class="border p-5" id="cuadrocheck">
+            
+            <legend for="tamaño">Tamaño de de la pizza</legend>
+           
+           
+            </fieldset>
+            
+        </div>
+        
+        <br>
+           
+        
+        
+        <div class="ingredientes">
+            <fieldset class="border p-5" id="cuadroingredientes">
+        <legend for="ingredientes">Ingredientes de la pizza</legend>
+
+
+        <!-- Para los checkbox igual que con radio, es importante el name para despues poder trabajar con ellos como grupo desde la parte
+        de JS -->
+       
+        
+        
+         </div>
+         </fieldset>
+         <br>
+         <!-- Ahora definimos nuestro boton  que va a ser el que active la funcion de validacion en el archivo JS -->
+         <!-- No utilizamos el boton submit para poder utilizar sweet alerts en nuestro archivo JS. El submit lo accionaremos desde el JS -->
+        <input type="button" class="btn btn-primary " name="procesar" id="procesar" value="Procesar pedido">
+        <input type="button" class="btn btn-primary " name="refrescar" id="refrescar" value="Refrescar información" onclick="location.reload()">
+
+      
+
+   
+
+   
+    </form>
+    <h1>¡Que disfrute de su pedido!</h1>
+</div>
+
+    <!-- script para validaciones de JS -->
+    <script src="./JS/validaciones.js" type="text/javascript"></script>
+    <script src="./JS/ajax.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.8.0/sweetalert2.min.js"></script>
+    
+</body>
+</html>
