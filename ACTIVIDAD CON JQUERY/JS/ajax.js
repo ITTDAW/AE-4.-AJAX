@@ -272,5 +272,5 @@ function RefrescarDatos(objetoJSon) {
 
 
 function procesarError (error){
-    alert("ALGO VA MAL! ESTAS CONECTADO AL SERVIDOR?");
+    alert("ALGO VA MAL! ESTAS CONECTADO AL SERVIDOR?. LOS DIRECTORIOS DE CON jQUERY Y SIN_JQUERY DEBEN DE ABRIRSE POR SEPARADO EN VISUALCODE");
 }
