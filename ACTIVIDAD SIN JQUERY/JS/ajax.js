@@ -262,6 +262,59 @@ function Respuesta(jsonDoc) {
 }
 
 
+//Para la funcion refrescar datos de los bloques de tamaño e ingredientes hacemos otra peticion AJAX para traer nuestro archivo actualizado
+function refrescarDatosJson(){
+    const URL_DESTINO = "http://localhost:5500/"
+    const RECURSO = "pizzeria.json"
+    
+       
+           
+    //Siempre hay que formar el objeto XMLHttpRequest
+            let xmlHttp = new XMLHttpRequest()
+            
+            xmlHttp.onreadystatechange = function () {
+                
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        
+                        //Esta va a ser la funcion que se ejecutará para calcular el valor de los productos escogidos por el cliente
+                        RefrescarDatos(this.responseText)
+                        
+                        
+
+                       
+                    }
+                     else {
+                        alert("ALGO VA MAL! ESTAS CONECTADO AL SERVIDOR?")
+                    }
+                }
+            }
+             // Para enviar una solicitud al servidor, se utiliza el método Open del objeto XMLHttpRequest () y send ():
+            xmlHttp.open('GET', URL_DESTINO + RECURSO, true)
+            xmlHttp.send(null)
+        
+    
+}
+
+//Esta es nuestra funcion callback para refrescar los datos de los bloques correspondientes sin refrescar los otros campos
+
+function RefrescarDatos(jsonDoc) {
+    
+     //Convertimos un texto a un objeto JSON
+     
+    //Vaciamos nuestros bloques que contienen los tamaños y los ingredientes para no acumular los nuevos sobre los viejos
+    let cuadrocheck=document.querySelector("#cuadrocheck");
+    let cuadroingredientes=document.querySelector("#cuadroingredientes");
+    cuadrocheck.innerHTML="";
+    cuadroingredientes.innerHTML="";
+   
+    //Llamamos a nuestra funcion ya creada que recibe nuestro objeto json nuevo por parametro y vuelve a crear los elementos necesarios
+    procesarRespuesta(jsonDoc);
+    
+   
+    
+}
+
 
 
 

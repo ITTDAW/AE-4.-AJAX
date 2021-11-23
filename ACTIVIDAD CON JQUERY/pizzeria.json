@@ -20,6 +20,11 @@
           "TAMAÑO": "SUPERGRANDE",
           "PRECIO": 15 
           
+        },
+{
+          "TAMAÑO": "EXTRAGRANDE",
+          "PRECIO": 20
+          
         }
     ],
     "INGREDIENTES": [

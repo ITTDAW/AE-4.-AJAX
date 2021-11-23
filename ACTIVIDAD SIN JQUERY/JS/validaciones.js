@@ -10,7 +10,7 @@ window.onload= function(){
     //Hemos utilizado un boton y no un submit para poder utilizar los sweet alert. De esta manera, el submit se realiza
     //cuando pulsamos el boton ok en el ultimo sweet alert de nuestro pedido.
     procesar.onclick =validacion;
-   
+    refrescar.onclick=refrescarDatosJson;
     /*Al mismo tiempo, vamos a realizar una petición AJAX al servidor para presentar los datos correspondientes a 
     tamaño e ingredientes de la pizza, para ello ejecutamos la siguiente función que se encuentra en el archivo ajax.js */
     CargarPaginaConDatos();

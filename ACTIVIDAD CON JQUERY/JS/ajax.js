@@ -7,7 +7,7 @@ function CargarPaginaConDatos(){
     const URL_DESTINO = "http://localhost:5500/"
     const RECURSO = "pizzeria.json"
     
-        //Con JQuery se hace así
+        //Con JQuery se hace así lo cual es mucho mas rapido que de la forma tradicional ahorrando bastante codigo.
     $.ajax({
         'type'  : 'GET', //Por defecto es GET
         'url'   : URL_DESTINO + RECURSO,
@@ -15,27 +15,13 @@ function CargarPaginaConDatos(){
     }
         ).done(procesarRespuesta)//funcion de callback que ejecutamos si todo ha ido bien
         .fail(procesarError)//funcion de callback que ejecutamos si ha ido mal, optativa
-        
-    
-      
-    
-                        
-          
-           
-        
-    
+
 }
 
-function procesarError (error){
-    alert("ALGO VA MAL! ESTAS CONECTADO AL SERVIDOR?");
-}
 
+//Aqui implementamos nuestra funcion callback que recibe nuestro objetoJson
+// La principal diferencia al utilizar JQuery es que ya recibimos el objeto en formato JSON y no hace falta hacer un parse
 function procesarRespuesta(objetoJSon) {
-    
-    
-    
-
-    
     
     
     /**
@@ -49,76 +35,68 @@ function procesarRespuesta(objetoJSon) {
      */ 
     let arrayIngredientes=objetoJSon.PIZZA.INGREDIENTES;
     
-    
-   
-   
     /*A continuacion vamos a formar nuestros elementos del formulario que estan a la espera de recibir los datos del json. En este caso
     estamos esperando a los valores de los tamaños y los ingredientes.
     Para la parte de tamaños, tenemos que formar los radio button correspondientes e introducirlos en el fieldset existente.
-    Seleccionamos el elemento fieldset cuadrocheck y lo introducimos en una variable*/
-    let cuadrocheck=document.querySelector("#cuadrocheck");
+    Con JQUERY es todo mucho mas sencillo y rapido ya que se añade todo en forma de arbol. Nos hace falta el bucle for igualmente para
+    añadir el correspondiente bloque segun se vaya recorriendo el array correspondiente*/
+
     
-    //Con un for recorremos nuestro arrayTamaños que hemos definido anteriormente
+    
     for (let i = 0; i < arrayTamaños.length; i++) {
-        //Para cada elemento del array formamos un div y le ponemos el nombre de clase para bootstrap
-        let div=document.createElement("div");
-        div.className="form-check";
-        //Para cada elemento creamos un input, le decimos que es de tipo radio , le introducimos el name tamaño para que formen todos parte del mismo bloque
-        //le introducimos el nombre de la clase correspondiente para formato bootstrap
-        let input=document.createElement("input");
-        input.type="radio";
-        input.name="tamaño";
-        input.className="form-check-input";
-        //creamos una etiqueta para cada radio
-        let label=document.createElement("label");
-        //Creamos una variable texto que contiene el nombre de cada tamaño segun su indice
+        
         let texto=arrayTamaños[i].TAMAÑO
-        //Le introducimos el nombre a la etiqueta la primera en mayuscula y lo restante en minuscula
-        label.textContent=texto[0].toUpperCase()+(texto.slice(1).toLowerCase());
-        //le establecemos el for a la etiqueta
-        label.htmlFor=texto;
-        //le establecemos el id al input
-        input.id=texto;
-        //agregamos al div creado al principio el input y el label
-        div.appendChild(input);
-        div.appendChild(label);
-        
-        //agregamos al fieldset el div
-        
-        cuadrocheck.appendChild(div);
+        $("<div>", {
+            'class': "form-check"
+        }).append(
+            $('<input>', {
+                'class': "form-check-input",
+                'type': 'radio',
+                'name': 'tamaño',
+            }),
+            $('<label>', {
+                'id': "texto",
+                'text': texto[0].toUpperCase()+(texto.slice(1).toLowerCase()),
+                
+            })
+    
+        ).appendTo('#cuadrocheck');
+    
     
     }
 
-    //La forma de crear los checkbox para los ingredientes es de una manera analoga al anterior caso pero con los checkbox y los ingredientes
-    let cuadroingredientes=document.querySelector("#cuadroingredientes");
+    //Para los ingredientes realizamos el mismo sistema que para tamaños
 
     for (let i = 0; i < arrayIngredientes.length; i++) {
-        let div=document.createElement("div");
-        div.className="form-check form-switch";
-        let input=document.createElement("input");
-        input.type="checkbox";
-        input.name="ingredientes";
-        input.className="form-check-input"
-        let label=document.createElement("label");
+        
         let texto=arrayIngredientes[i].INGREDIENTE;
-        label.textContent=texto[0].toUpperCase()+(texto.slice(1).toLowerCase());
-        label.htmlFor=texto;
-        input.id=texto;
-        div.appendChild(input);
-        div.appendChild(label);
-        
-        
-        
-        cuadroingredientes.appendChild(div);
+        $("<div>", {
+            'class': "form-check form-switch"
+        }).append(
+            $('<input>', {
+                'class': "form-check-input",
+                'type': 'checkbox',
+                'name': 'ingredientes',
+            }),
+            $('<label>', {
+                'id': "texto",
+                'text': texto[0].toUpperCase()+(texto.slice(1).toLowerCase()),
+                
+            })
+    
+        ).appendTo('#cuadroingredientes');
+    
     
     }
+   
     
     
 }
 
 
 //Para traer los precios de los productos seleccionados por el cliente, hacemos una nueva peticion AJAX al servidor de la misma forma que 
-//la anterior
+//la anterior en formato JQUERY. Cada peticion AJAX lleva asociada su correspondiente funcion callback que es la que nos interesa.
+
 function CargarPaginaParaPrecios(){
     //El puerto que utiliza el live Server de Visual Code, recuerda que si lo tienes ocupado, live Server abre otro puerto y lo deberias de cambiar
     const URL_DESTINO = "http://localhost:5500/"
@@ -143,12 +121,12 @@ function CargarPaginaParaPrecios(){
     
 }
 
-function procesarError (error){
-    alert("ALGO VA MAL! ESTAS CONECTADO AL SERVIDOR?");
-}
+
+
+
 function Respuesta(objetoJson) {
    
-   
+   //Recibimos con JQUERY nuestro objeto ya en formato JSON
    //Creamos el array de objetos arrayTamaños y arrayIngredientes
     let arrayTamaños=objetoJson.PIZZA.TAMAÑOS;
     
@@ -158,10 +136,12 @@ function Respuesta(objetoJson) {
     let i=0;
     //Creamos una variable preciotamaño donde vamos a introducir el precio del tamaño escogido
     let preciotamaño=0;
+    
+
+    //Con JQUERY creamos una variable tamaño y le decimos que son los input con el name tamaño, por lo tanto sera una variable de tipo array
+    let tamaño=$("input[name=tamaño]");
     //Recorremos el grupo de los radio, buscando cual esta checked, como todos tienen el mismo name, solamente habrá uno seleccionado,
     //cuando lo encuentra sale del bucle.
-
-    let tamaño=$("input[name=tamaño]");
     for( i=0;i<tamaño.length;i++){
         
         if (tamaño[i].checked==true){
@@ -177,7 +157,7 @@ function Respuesta(objetoJson) {
     
     //Creamos una variable en donde vamos a concatenar el texto ingrediente mas precio para la presentacion despues en el sweet alert
     let cadenaIngredientesAñadidos="";
-
+    //Con JQUERY creamos una variable ingredientes que son los input con el name ingredientes, al ser un grupo será una variable de tipo array
     let ingredientes=$("input[name=ingredientes]");
         //Recorremos el array formado por los elementos ingredientes que tienen el mismo name, se podria recorrer tambien el arrayIngredientes
          for(let j=0;j<ingredientes.length;j++){
@@ -249,8 +229,48 @@ function Respuesta(objetoJson) {
 }
 
 
+//Para la funcion refrescar datos de los bloques de tamaño e ingredientes hacemos otra peticion AJAX para traer nuestro archivo actualizado
+function refrescarDatosJson(){
+    //El puerto que utiliza el live Server de Visual Code, recuerda que si lo tienes ocupado, live Server abre otro puerto y lo deberias de cambiar
+    const URL_DESTINO = "http://localhost:5500/"
+    const RECURSO = "pizzeria.json"
+    
+        //Con JQuery se hace así
+    $.ajax({
+        'type'  : 'GET', //Por defecto es GET
+        'url'   : URL_DESTINO + RECURSO,
+        'async' : true, //Por defecto es true
+    }
+        ).done(RefrescarDatos)//funcion de callback que ejecutamos si todo ha ido bien
+        .fail(procesarError)//funcion de callback que ejecutamos si ha ido mal, optativa
+        
+    
+      
+    
+                        
+          
+           
+        
+    
+}
 
+//Esta es nuestra funcion callback para refrescar los datos de los bloques correspondientes
 
-
-
+function RefrescarDatos(objetoJSon) {
+    
+    
+    //Vaciamos nuestros bloques que contienen los tamaños y los ingredientes para no acumular los nuevos sobre los viejos
+    $("#cuadrocheck").empty();
+    $("#cuadroingredientes").empty();
    
+    //Llamamos a nuestra funcion ya creada que recibe nuestro objeto json nuevo por parametro y vuelve a crear los elementos necesarios
+    procesarRespuesta(objetoJSon);
+    
+   
+    
+}
+
+
+function procesarError (error){
+    alert("ALGO VA MAL! ESTAS CONECTADO AL SERVIDOR?");
+}
