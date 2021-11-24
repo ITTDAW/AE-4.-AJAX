@@ -64,38 +64,24 @@
             </fieldset>
        
        <br>
+
         <div class="tamaño" id="tamaño">
             <legend for="tamaño">Tamaño de de la pizza</legend>
-            <fieldset class="border p-5" id="cuadrocheck">
-            
-               
-           
-           
-            </fieldset>
-            
+            <fieldset class="border p-5" id="cuadrocheck"> </fieldset> 
         </div>
         
         <br>
            
-        
-        
         <div class="ingredientes">
             <legend for="ingredientes">Ingredientes de la pizza</legend>
-            <fieldset class="border p-5" id="cuadroingredientes">
-        
+            <fieldset class="border p-5" id="cuadroingredientes"> </fieldset>
+        </div>
 
-
-        <!-- Para los checkbox igual que con radio, es importante el name para despues poder trabajar con ellos como grupo desde la parte
-        de JS -->
-       
-        
-        
-         </div>
-         </fieldset>
          <br>
          <!-- Ahora definimos nuestro boton  que va a ser el que active la funcion de validacion en el archivo JS -->
          <!-- No utilizamos el boton submit para poder utilizar sweet alerts en nuestro archivo JS. El submit lo accionaremos desde el JS -->
         <input type="button" class="btn btn-primary " name="procesar" id="procesar" value="Procesar pedido">
+        <!-- Añadimos un boton para refrescar los datos de los bloques de tamaños e ingredientes segun varia el fichero -->
         <input type="button" class="btn btn-primary " name="refrescar" id="refrescar" value="Refrescar información" onclick="refrescarDatosJson()">
 
       

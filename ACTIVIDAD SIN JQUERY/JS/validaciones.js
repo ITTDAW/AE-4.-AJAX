@@ -167,25 +167,7 @@ function validacion(){
 
   
 
-    //SI TODAS LAS VALIDACIONES NO DEVUELVEN NINGUN FALSE, PODEMOS CALCULAR EL PRECIO DE NUESTRA PIZZA
-
-    //Primero mostramos un alert con el tamaño de la pizza pedida y el precio que supone ese tamaño, tenemos los valores en las variables que hemos guardado
-    // swal("La pizza pedida es: \n"
-    // + "Tamaño : "+ tam.toUpperCase() + " " + preciotamaño + " euros" );
-
-    /*Despues para saber cuantos ingredientes hemos seleccionado, seleccionamos nuestro grupo checkbox con el name que le establecimos
-    en el html y lo recorremos con un bucle for */
-    
-   
-    
-    
-
-    //Con el siguiente alert mostramos el numero total de ingredientes que hemos seleccionado y el precio de los mismos
-    // swal("Has añadido :\n"+ 
-    // precioingredientes + " ingredientes: " + precioingredientes + "euros.")
-
-    //Y en el ultimo sweet alert devolvemos el valor total de la pizza desglosando sus apartados
-   
+  
    
       
     

@@ -43,10 +43,6 @@ function procesarRespuesta(jsonDoc) {
     var objetoJson = JSON.parse(jsonDoc)
     
     
-
-    
-    
-    
     /**
      * Ahora con nuestro objeto JSON, accedemos a los tamaños de la pizza y los introducimos en un array, tendremos un array de objetos
      * ya que tamaños esta formado por TAMAÑO y PRECIO

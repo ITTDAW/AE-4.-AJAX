@@ -149,12 +149,6 @@ function validacion(){
         return false;
     }
        
-        
-   
-    
-
- 
-    
     //AQUI VALIDAMOS QUE ALGUN INGREDIENTE SE ENCUENTRE SELECCIONADO
     //Utilizamos el selector de JQUERY que ya nos va a dar un objeto con los input con ese name seleccionados (checked)
     let  ingredientes=$("input[name=ingredientes]:checked");
